@@ -2,6 +2,7 @@ import logging
 from typing import Optional
 
 import pandas as pd
+import uvicorn
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -100,3 +101,7 @@ def predict(req: PredictRequest):
 @app.get('/')
 def health():
     return {'status': 'ok'}
+
+
+if __name__ == '__main__':
+    uvicorn.run("api.server:app", host='127.0.0.1', port=8000, reload=True)
